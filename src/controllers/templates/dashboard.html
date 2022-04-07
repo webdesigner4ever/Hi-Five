@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+    <title>Dashboard</title>
+{% endblock %}
+{% block content %}
+    <h1>Dashboard</h1>
+    <ul>
+        <li><a href="/notes">Passwords</a></li>
+        <li><a href="/bookmarks">Bookmarks</a></li>
+        <li><a href="/notes">Notes</a></li>
+        <li><a href="/documents">Documents</a></li>
+    </ul>
+    
+{% endblock %}
