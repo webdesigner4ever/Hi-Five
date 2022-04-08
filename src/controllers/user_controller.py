@@ -20,4 +20,4 @@ class user_controller:
         if user is None:
             return False
         else:
-            return True
+            return user

@@ -1,4 +1,6 @@
-from flask import Flask, request, jsonify, redirect
+from flask import Flask, render_template, redirect, request, session, jsonify, abort
+from flask_session import Session
+from functools import wraps
 from flask.templating import render_template
 from models.db import  db
 import os
@@ -9,22 +11,34 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
+def authorize(f):
+    @wraps(f)
+    def decorated_function(*args, **kws):
+        if not session.get("user"):
+            return redirect("/login")
+        return f(*args, **kws) 
+    return decorated_function
 
-@app.route('/', methods=["GET"])
+@app.route('/login', methods=["GET"])
 def index():
     return render_template("index.html")
 
-@app.route("/", methods=["POST"])
+@app.route("/login", methods=["POST"])
 def login():
     username = request.form["username"]
     password = request.form["password"]  
 
     uc = user_controller(username, password)
-    if uc.login():
-        return render_template("index.html", message="Welcome")
+    if uc.login() != False:
+        session["user"] = uc
+        return redirect("/")
     else:
         return render_template("index.html", message="Invalid Credentials")
 
+@app.route("/logout")
+def logout():
+    session["user"] = None
+    return redirect("/login")
 
 @app.route("/register", methods=["GET"])
 def register():
@@ -40,21 +54,29 @@ def do_register():
     
     return render_template("index.html", message="Registration Success")
 
+@app.route("/bookmark")
+@authorize
+def view_bookmarks():
+    return "bookmark"
+
 @app.route("/bookmark/create", methods=["POST"])
+@authorize
 def create_bookmark():
     bc = bookmark_controller(1)
 
-@app.route("/dashboard", methods=["GET"])
+@app.route("/", methods=["GET"])
+@authorize
 def dashboard():
-    return render_template("dashboard.html")
-
+    return render_template("dashboard.html", user=session["user"])
 
 db.init_app(app)
 
 with app.app_context():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.sqlite')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+    app.config["SESSION_PERMANENT"] = False
+    app.config["SESSION_TYPE"] = "filesystem"
+    Session(app)
     db.create_all()
 
 if __name__ == "__main__":
