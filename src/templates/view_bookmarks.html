@@ -1,12 +1,22 @@
 <form method="POST" action="/bookmarks/add">
-    <input type="text" name="bookmark_title" />
-    <input type="text" name="bookmark_url" />
-    <input type="text" name="bookmark_desc" />
-    <input type="submit" name="submit" />
-    
+    <input type="text" name="bookmark_title"/>
+    <input type="text" name="bookmark_url"/>
+    <input type="text" name="bookmark_desc"/>
+    <input type="submit" name="submit"/>
+
 </form>
-{% for bookmark in bookmarks %}
-    <h1>{{ bookmark["bookmark_title"] }}</h1>
-    <p>{{ bookmark["bookmark_desc"]}} </p>
-    <a href="{{ bookmark['bookmark_url'] }}">Link</a>
-{% endfor %}
+<table>
+    {% for bookmark in bookmarks %}
+        <tr>
+            <td>{{ bookmark["bookmark_title"] }}</td>
+            <td>{{ bookmark["bookmark_desc"] }}
+            </td>
+            <td>
+                <a href="{{ bookmark['bookmark_url'] }}">View</a>
+            </td>
+            <td>
+                <a href="/bookmarks/delete/{{ bookmark['bookmark_id'] }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

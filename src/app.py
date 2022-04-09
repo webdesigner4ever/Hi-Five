@@ -72,6 +72,13 @@ def add_bookmark():
     bc.create_bookmark()
     return redirect("/bookmarks")
 
+@app.route("/bookmarks/delete/<bookmark_id>", methods=["GET"])
+@authorize
+def delete_bookmark(bookmark_id):
+    bc = bookmark_controller(user_id=session["user"].user_id,bookmark_id=bookmark_id)
+    bc.delete_bookmark()
+    return redirect("/bookmarks")
+
 @app.route("/", methods=["GET"])
 @authorize
 def dashboard():
