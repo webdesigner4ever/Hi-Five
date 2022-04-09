@@ -12,8 +12,8 @@ class User(db.Model):
         self.password = password
 
 class Bookmark(db.Model):
-    bookmark_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(User.user_id), primary_key=True)
+    bookmark_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.user_id))
     bookmark_title = db.Column(db.String(165), nullable=False)
     bookmark_desc = db.Column(db.String(1024), nullable=True)
     bookmark_url = db.Column(db.String(1024), nullable=False)

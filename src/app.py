@@ -62,11 +62,15 @@ def view_bookmarks():
     bookmarks = bc.get_bookmarks() 
     return render_template("view_bookmarks.html", bookmarks=bookmarks) 
 
-@app.route("/bookmark/add", methods=["POST"])
+@app.route("/bookmarks/add", methods=["POST"])
 @authorize
 def add_bookmark():
-    bc = bookmark_controller(1)
-    return ""
+    bookmark_title = request.form["bookmark_title"]
+    bookmark_desc = request.form["bookmark_desc"]
+    bookmark_url = request.form["bookmark_url"]
+    bc = bookmark_controller(session["user"].user_id, bookmark_title, bookmark_desc, bookmark_url)
+    bc.create_bookmark()
+    return redirect("/bookmarks")
 
 @app.route("/", methods=["GET"])
 @authorize

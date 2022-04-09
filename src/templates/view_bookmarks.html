@@ -1,3 +1,10 @@
+<form method="POST" action="/bookmarks/add">
+    <input type="text" name="bookmark_title" />
+    <input type="text" name="bookmark_url" />
+    <input type="text" name="bookmark_desc" />
+    <input type="submit" name="submit" />
+    
+</form>
 {% for bookmark in bookmarks %}
     <h1>{{ bookmark["bookmark_title"] }}</h1>
     <p>{{ bookmark["bookmark_desc"]}} </p>
