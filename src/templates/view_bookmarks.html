@@ -1,0 +1,5 @@
+{% for bookmark in bookmarks %}
+    <h1>{{ bookmark["bookmark_title"] }}</h1>
+    <p>{{ bookmark["bookmark_desc"]}} </p>
+    <a href="{{ bookmark['bookmark_url'] }}">Link</a>
+{% endfor %}

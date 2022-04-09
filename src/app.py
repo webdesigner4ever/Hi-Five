@@ -29,8 +29,9 @@ def login():
     password = request.form["password"]  
 
     uc = user_controller(username, password)
-    if uc.login() != False:
-        session["user"] = uc
+    user = uc.login()
+    if user != False:
+        session["user"] = user
         return redirect("/")
     else:
         return render_template("index.html", message="Invalid Credentials")
@@ -54,15 +55,18 @@ def do_register():
     
     return render_template("index.html", message="Registration Success")
 
-@app.route("/bookmark")
+@app.route("/bookmarks")
 @authorize
 def view_bookmarks():
-    return "bookmark"
+    bc = bookmark_controller(session["user"].user_id)
+    bookmarks = bc.get_bookmarks() 
+    return render_template("view_bookmarks.html", bookmarks=bookmarks) 
 
-@app.route("/bookmark/create", methods=["POST"])
+@app.route("/bookmark/add", methods=["POST"])
 @authorize
-def create_bookmark():
+def add_bookmark():
     bc = bookmark_controller(1)
+    return ""
 
 @app.route("/", methods=["GET"])
 @authorize

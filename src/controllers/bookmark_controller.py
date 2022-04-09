@@ -12,10 +12,11 @@ class bookmark_controller():
         self.bookmark_url = bookmark_url
         self.bookmark_desc = bookmark_desc
 
-    def get_bookmarks():
-        pass
+    def get_bookmarks(self):
+        bookmarks = Bookmark.query.filter_by(user_id=self.user_id).all()
+        return bookmarks
         
-    def create_bookmark():
+    def create_bookmark(self):
         bookmark = Bookmark(self.user_id, self.bookmark_title, self.bookmark_desc, self.bookmark_url)
         db.session.add(bookmark)
         db.session.commit()
