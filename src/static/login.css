@@ -1,0 +1,37 @@
+h2 {
+    text-align: center;
+}
+body {
+    background-image: url("https://i.pinimg.com/736x/8b/28/ea/8b28ea342abe529f205a4a13af64b32b.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #cccccc;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+input {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+}
+.centered {
+    position: fixed;
+    background-color: #7fafd6;
+    top: 40%;
+    left: 40%;
+    margin-top: -80px;
+    margin-left: -10px;
+    padding: 10px;
+}
+
+.error {
+    color:red
+}
