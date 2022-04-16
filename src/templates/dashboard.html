@@ -2,11 +2,20 @@
 {% block title %}Index{% endblock %}
 {% block head %}
 {{ super() }}
+    
+    <link rel="stylesheet" href="/static/login.css" />
     <title>Dashboard</title>
 {% endblock %}
+
+
 {% block content %}
-    <h1>Dashboard</h1>
-    <p>Welcome {{ user["username"] }}</p>
+    <h1><div3>Dashboard</div3></h1>
+    <style>
+        a:hover {
+          background-color: rgb(4, 0, 255);
+        }
+    </style>
+    <h3><div3>Welcome {{ user["username"] }}</div3></h3>
     <ul>
         <li><a href="/notes">Passwords</a></li>
         <li><a href="/bookmarks">Bookmarks</a></li>
