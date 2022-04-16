@@ -1,6 +1,9 @@
 h2 {
     text-align: center;
 }
+h1 {
+    text-align: center;
+}
 body {
     background-image: url("https://i.pinimg.com/736x/8b/28/ea/8b28ea342abe529f205a4a13af64b32b.jpg");
     background-repeat: no-repeat;
@@ -35,3 +38,27 @@ input {
 .error {
     color:red
 }
+    
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+  }
+  
+  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color on hover */
+  li a:hover {
+    background-color: brown;
+    color: white;
+  }
+  div3 {
+    color: white;
+  }
