@@ -5,12 +5,46 @@
     <title>Login</title>
 {% endblock %}
 {% block content %}
+<style>
+    h1 {text-align: center;}
+    body {
+ background-image: url("https://i.pinimg.com/736x/8b/28/ea/8b28ea342abe529f205a4a13af64b32b.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ 
+ background-color: #cccccc;
+}
+  input {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 50px 10;
+  box-sizing: border-box;
+
+  }
+  .header {
+  
+  text-align: center;
+  padding: 20px;
+}
+.centered {
+  position: fixed;
+  background-color: #7fafd6;
+  top: 40%;
+  left: 40%;
+  margin-top: -40px;
+  margin-left: -90px;
+}
+    </style>
+    <div class="centered">
     <h1>Login</h1>
     <form action="/login" method="POST">
-        <input type="text" name="username" />
-        <input type="password" name="password" />
+        <label for="username"><b>Username : </b></label>
+        <input type="text" name="username" /><br>
+        <label for="password"><b>Password : </b></label>
+        <input type="password" name="password" /><br>
         <input type="submit" value="Submit" />
 
         {{ message }}
     </form>
+    </div>
 {% endblock %}
