@@ -21,14 +21,17 @@ def create_app():
         # Import parts of our application
         from bookmarks import bookmarks_route
         from auth import login_route
-
+        from notes import notes_route
+       
         # Register Blueprints
         app.register_blueprint(bookmarks_route)
         app.register_blueprint(login_route)
+        app.register_blueprint(notes_route)
+       
 
         return app
 
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8081, debug=True)
