@@ -1,26 +1,14 @@
-{% extends "layout.html" %}
-{% block title %}Index{% endblock %}
+{% extends "dashboard-layout.html" %}
+{% block title %}Dashboard - Password Manager{% endblock %}
 {% block head %}
 {{ super() }}
     
-    <link rel="stylesheet" href="/static/login.css" />
-    <title>Dashboard</title>
 {% endblock %}
-
-
 {% block content %}
-    <h1><div3>Dashboard</div3></h1>
-    <style>
-        a:hover {
-          background-color: rgb(4, 0, 255);
-        }
-    </style>
-    <h3><div3>Welcome {{ user["username"] }}</div3></h3>
-    <ul>
-        <li><a href="/notes">Passwords</a></li>
-        <li><a href="/bookmarks">Bookmarks</a></li>
-        <li><a href="/notes">Notes</a></li>
-        <li><a href="/documents">Documents</a></li>
-    </ul>
+<!-- Page content-->
+<div class="container-fluid">
+    <h1 class="mt-4">Welcome, {{ user["username"] }}</h1>
+    <hr />
     
+</div>        
 {% endblock %}

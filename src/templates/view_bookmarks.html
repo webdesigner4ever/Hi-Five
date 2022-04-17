@@ -1,3 +1,11 @@
+{% extends "dashboard-layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+    <title>Login</title>
+
+{% endblock %}
+{% block content %}
 <form method="POST" action="/bookmarks/add">
     <input type="text" name="bookmark_title"/>
     <input type="text" name="bookmark_url"/>
@@ -20,3 +28,4 @@
         </tr>
     {% endfor %}
 </table>
+{% endblock %}
