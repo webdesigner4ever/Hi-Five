@@ -1,15 +1,13 @@
 <form method="POST" action="/notes/add">
     <input type="text" name="note_title"/>
     <input type="text" name="note_cont"/>
-    <input type="text" name="note_desc"/>
     <input type="submit" name="submit"/>
 
 </form>
 <table>
-    {% for bookmark in notes %}
+    {% for note in notes %}
         <tr>
             <td>{{ note["note_title"] }}</td>
-            <td>{{ note["note_desc"] }}
             </td>
             <td>
                 <a href="{{ note['note_url'] }}">View</a>

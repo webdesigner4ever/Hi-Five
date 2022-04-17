@@ -17,17 +17,16 @@ def view_notes():
 @authorize
 def add_note():
     note_title = request.form["note_title"]
-    note_desc = request.form["note_desc"]
     note_cont = request.form["note_cont"]
    
-    nc = note_controller(session["user"].user_id, note_title, note_desc,note_cont)
+    nc = note_controller(session["user"].user_id, note_title, note_cont)
     nc.create_note()
     return redirect("/notes")
 
 @notes_route.route("/notes/delete/<note_id>", methods=["GET"])
 @authorize
 def delete_note(note_id):
-    nc =note_controller(user_id=session["user"].user_id,note_id=note_id)
+    nc = note_controller(user_id=session["user"].user_id, note_id=note_id)
     nc.delete_note()
     return redirect("/notes")
     
