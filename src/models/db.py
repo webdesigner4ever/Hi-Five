@@ -49,8 +49,18 @@ class pswrd(db.Model):
         self.user_id = user_id
         self.pswrd_title = pswrd_title
         self.pswrd_content= pswrd_content
-        
 
+class Note(db.Model):
+    note_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.user_id))
+    note_title = db.Column(db.String(165), nullable=False)
+    note_content = db.Column(db.String(1024), nullable=True)
+   
+    def __init__(self, user_id, note_title, note_content):
+        self.user_id = user_id
+        self.note_title = note_title
+        self.note_content= note_content
+            
 class Passowrd(db.Model):
     password_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.user_id))
