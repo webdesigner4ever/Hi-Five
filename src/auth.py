@@ -55,3 +55,24 @@ def do_register():
 def dashboard():
     return render_template("dashboard.html", user=session["user"])
 
+@login_route.route("/settings", methods=["GET"])
+def changepassword():
+    return render_template("changepassword.html")
+
+@login_route.route("/changepassword", methods=["POST"])
+def do_password():
+    currentpassword = request.form["current_password"]
+    New_password = request.form["New_password"]  
+    confirm_password = request.form["confirm_password"]
+
+    if New_password==confirm_password:
+        uc = user_controller(session.get("user").username, currentpassword)
+        user = uc.changepassword(currentpassword,New_password)
+        return render_template("changepassword.html", message="Password Confirmed")
+    else:
+        return render_template("changepassword.html", message="Wrong Password")
+
+    uc = user_controller(currentpassword,Newpassword,confirmpassword)
+    uc.changepassword()
+    uc = user_controller(username, password)
+    uc.register()
