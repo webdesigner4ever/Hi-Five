@@ -21,3 +21,15 @@ class user_controller:
             return False
         else:
             return user
+    
+    def changepassword(self,currentpassword,newpassword):
+        user = User.query.filter_by(username=self.username, password=currentpassword).first()
+        if user is not None:
+            user.password = newpassword
+            db.session.flush()
+            db.session.commit()
+            return True
+        else:
+            return False
+
+       
