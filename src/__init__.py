@@ -22,6 +22,7 @@ def create_app():
         from bookmarks import bookmarks_route
         from auth import login_route
         from notes import notes_route
+        from pswrds import pswrds_route
         from documents import documents_route
        
         # Register Blueprints
@@ -29,6 +30,7 @@ def create_app():
         app.register_blueprint(login_route)
         app.register_blueprint(notes_route)
         app.register_blueprint(documents_route)
+        app.register_blueprint(pswrds_route)
        
 
         return app
