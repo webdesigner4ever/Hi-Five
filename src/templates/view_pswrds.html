@@ -1,3 +1,9 @@
+{% extends "dashboard-layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
 
 <form method="POST" action="/pswrd_descs/add">
     <input type="text" name="pswrd_desc_title"/>
@@ -21,3 +27,4 @@
         </tr>
     {% endfor %}
 </table>
+{% endblock %}

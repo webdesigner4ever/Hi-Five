@@ -4,13 +4,18 @@
 {{ super() }}
     <title>Login</title>
     <link rel="stylesheet" href="/static/login.css" />
+    
 {% endblock %}
 
 
 {% block content %}
+    <h1><div3>Password Manager</div3></h1>
     <div class="centered">
-    <h1>Password Manager</h1>
-    <h2>Register</h2>
+    <h1>Register</h1>
+    
+    <div class="imgcontainer">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTELg8Pd3s5IRgAw2doRjTeQMczRq3GJDynOJMbXt_RWHtNWCUisvgVyHdDiwC01MnDWXA&usqp=CAU">
+      </div>    
     <form action="/register.do" method="POST">
         <label for="newuser"><b>New User : </b></label>
         <input type="text" name="username" placeholder="Enter your username"/><br>
