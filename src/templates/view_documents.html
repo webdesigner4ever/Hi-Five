@@ -1,0 +1,27 @@
+{% extends "dashboard-layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<form method="POST" action="/documents/add">
+    <input type="text" name="document_title"/>
+    <input type="text" name="document_cont"/>
+    <input type="submit" name="submit"/>
+
+</form>
+<table>
+    {% for document in documents %}
+        <tr>
+            <td>{{ document["document_title"] }}</td>
+            </td>
+            <td>
+                <a href="{{ document['document_url'] }}">View</a>
+            </td>
+            <td>
+                <a href="/documents/delete/{{ document['document_id'] }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
