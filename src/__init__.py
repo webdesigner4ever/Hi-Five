@@ -22,11 +22,13 @@ def create_app():
         from bookmarks import bookmarks_route
         from auth import login_route
         from notes import notes_route
+        from pswrds import pswrds_route
        
         # Register Blueprints
         app.register_blueprint(bookmarks_route)
         app.register_blueprint(login_route)
         app.register_blueprint(notes_route)
+        app.register_blueprint(pswrds_route)
        
 
         return app
