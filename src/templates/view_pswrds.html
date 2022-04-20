@@ -6,11 +6,15 @@
 {% block content %}
 
 <form method="POST" action="/pswrd_descs/add">
+    Username
     <input type="text" name="pswrd_desc_title"/>
+    Password
     <input type="text" name="pswrd_desc_cont"/>
+    Password description
     <input type="text" name="pswrd_desc_desc"/>
+    
     <input type="submit" name="submit"/>
-
+    
 </form>
 <table>
     {% for bookmark in pswrd_descs %}
