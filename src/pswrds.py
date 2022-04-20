@@ -13,12 +13,17 @@ def view_pswrds():
     pswrds = pc.get_pswrds() 
     return render_template("view_pswrds.html", pswrds=pswrds) 
 
-@pswrds_route.route("/pswrds/add", methods=["POST"])
+@pswrds_route.route("/pswrd/add", methods=["POST"])
 @authorize
 def add_pswrd():
     pswrd_title = request.form["pswrd_title"]
     pswrd_desc = request.form["pswrd_desc"]
     pswrd_cont = request.form["pswrd_cont"]
+    if (len(pswrd_cont)==0 or (len(pswrd_desc)==0) or (len(pswrd_title)==0)):
+        print("Invalid Password")
+    
+    
+
    
     pc = pswrd_controller(session["user"].user_id, pswrd_title, pswrd_desc,pswrd_cont)
     pc.create_pswrd()
