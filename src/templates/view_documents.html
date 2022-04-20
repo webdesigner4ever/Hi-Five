@@ -4,9 +4,9 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
-<form method="POST" action="/documents/add">
+<form method="POST" action="/documents/add" enctype="multipart/form-data">
     <input type="text" name="document_title"/>
-    <input type="text" name="document_cont"/>
+    <input type="file" name="document"/>
     <input type="submit" name="submit"/>
 
 </form>
@@ -16,7 +16,7 @@
             <td>{{ document["document_title"] }}</td>
             </td>
             <td>
-                <a href="{{ document['document_url'] }}">View</a>
+                <a href="/download/{{ document['document_url'] }}">Download</a>
             </td>
             <td>
                 <a href="/documents/delete/{{ document['document_id'] }}">Delete</a>
