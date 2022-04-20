@@ -13,6 +13,7 @@ def create_app():
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.sqlite')
         app.config["SESSION_PERMANENT"] = False
         app.config["SESSION_TYPE"] = "filesystem"
+        app.config['UPLOAD_FOLDER'] = basedir + "/static/uploads"
         Session(app)
         db.init_app(app)
         db.create_all()
