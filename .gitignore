@@ -1,6 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-static/uploads/
+static/uploads/*
 flask_session/
 *.sqlite
 *.py[cod]
