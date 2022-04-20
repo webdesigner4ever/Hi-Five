@@ -70,7 +70,7 @@ def do_password():
         user = uc.changepassword(currentpassword,New_password)
         return render_template("changepassword.html", message="Password Confirmed")
     else:
-        return render_template("changepassword.html", message="Wrong Password")
+        return render_template("changepassword.html", message="Password does not match")
 
     uc = user_controller(currentpassword,Newpassword,confirmpassword)
     uc.changepassword()
