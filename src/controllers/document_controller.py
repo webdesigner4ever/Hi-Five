@@ -21,9 +21,11 @@ class document_controller():
         db.session.add(document)
         db.session.commit()
     
-    def delete_document(self):
-        Document.query.filter_by(user_id=self.user_id, document_id=self.document_id).delete()
+    def delete_document(self): 
+        doc = Document.query.filter_by(user_id=self.user_id, document_id=self.document_id)
+        document_path = doc.first().document_cont
+        doc.delete()
         db.session.commit()
-        return True
+        return document_path
 
      

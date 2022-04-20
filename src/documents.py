@@ -6,6 +6,7 @@ from auth import authorize
 from functools import wraps
 import uuid
 import os 
+import shutil
 
 documents_route = Blueprint("documents_route", __name__)
 
@@ -33,6 +34,7 @@ def add_document():
 @authorize
 def delete_document(document_id):
     dc = document_controller(user_id=session["user"].user_id, document_id=document_id)
-    dc.delete_document()
+    filepath = dc.delete_document()
+    shutil.rmtree(os.path.join(current_app.config['UPLOAD_FOLDER'], filepath.split("/")[0]))
     return redirect("/documents")
     

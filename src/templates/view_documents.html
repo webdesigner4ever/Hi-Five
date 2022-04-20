@@ -4,24 +4,64 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
-<form method="POST" action="/documents/add" enctype="multipart/form-data">
-    <input type="text" name="document_title"/>
-    <input type="file" name="document"/>
-    <input type="submit" name="submit"/>
+<div class="container">
+    <div class="row mt-5">
+        <form method="POST" action="/documents/add" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Save Documents</h5>
+                    <hr />
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            Document Title: 
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" required class="form-control" name="document_title"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            Upload File: 
+                        </div>
+                        <div class="col-md-9">
+                            <input type="file" required name="document"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" name="submit" class="btn btn-success"/>
+                </div>
+            </div>
+        </form>
+    </div>
 
-</form>
-<table>
-    {% for document in documents %}
-        <tr>
-            <td>{{ document["document_title"] }}</td>
-            </td>
-            <td>
-                <a target="_blank" href="/static/uploads/{{ document['document_cont'] }}">Download</a>
-            </td>
-            <td>
-                <a href="/documents/delete/{{ document['document_id'] }}">Delete</a>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Saved Documents</h5>
+                <hr/>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                                <th>Document Title</th>
+                                <th>Action</th>
+                        </tr>
+                    </thead>
+                    {% for document in documents %}
+                        <tr>
+                            <td>{{ document["document_title"] }}</td>
+                            <td>
+                                <a class="btn btn-warning" target="_blank" href="/static/uploads/{{ document['document_cont'] }}">Download</a>
+                                <a class="btn btn-danger" href="/documents/delete/{{ document['document_id'] }}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}
