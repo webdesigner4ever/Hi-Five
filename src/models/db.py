@@ -28,12 +28,10 @@ class Document(db.Model):
     document_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.user_id))
     document_title = db.Column(db.String(165), nullable=False)
-    document_desc = db.Column(db.String(1024), nullable=True)
     document_cont= db.Column(db.String(1024), nullable=False)
-    def __init__(self, user_id, document_title,  document_desc, document_cont):
+    def __init__(self, user_id, document_title, document_cont):
         self.user_id = user_id
         self.document_title = document_title
-        self.document_desc =  document_desc
         self.document_cont = document_cont
 
 class pswrd(db.Model):

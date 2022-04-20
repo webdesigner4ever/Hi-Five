@@ -25,7 +25,7 @@ def add_document():
     filename = folder_id + "/" + f.filename
     os.mkdir(os.path.join(current_app.config['UPLOAD_FOLDER'], folder_id))
     f.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-    dc = document_controller(session["user"].user_id, document_title, document_desc, filename)
+    dc = document_controller(session["user"].user_id, document_title, filename)
     dc.create_document()
     return redirect("/documents")
 
