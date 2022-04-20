@@ -32,6 +32,9 @@ class note_controller():
         db.session.commit()
     
     def update_note(self):
+        """
+            Update note of given note id with new contents
+        """
         note = Note.query.filter_by(user_id=self.user_id, note_id=self.note_id).first()
         note.note_title = self.note_title
         note.note_content = self.note_content

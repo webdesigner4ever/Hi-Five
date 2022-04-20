@@ -34,6 +34,16 @@
                 </div>
             </div>
         </form>
+        {% elif view_note: %}
+        <div class="col-md-12"> 
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ view_note.title }}</h5>
+                    <hr />
+                    {{ view_note.content | safe}}
+                </div>
+            </div>
+        </div>
         {% else %}
         <div class="col-md-12"> 
             <form method="POST" action="/notes/add">
