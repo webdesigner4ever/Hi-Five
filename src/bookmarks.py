@@ -16,12 +16,15 @@ def view_bookmarks():
 @bookmarks_route.route("/bookmarks/add", methods=["POST"])
 @authorize
 def add_bookmark():
-    bookmark_title = request.form["bookmark_title"]
-    bookmark_desc = request.form["bookmark_desc"]
-    bookmark_url = request.form["bookmark_url"]
-    bc = bookmark_controller(session["user"].user_id, bookmark_title, bookmark_desc, bookmark_url)
-    bc.create_bookmark()
-    return redirect("/bookmarks")
+    try:
+        bookmark_title = request.form["bookmark_title"]
+        bookmark_desc = request.form["bookmark_desc"]
+        bookmark_url = request.form["bookmark_url"]
+        bc = bookmark_controller(session["user"].user_id, bookmark_title, bookmark_desc, bookmark_url)
+        bc.create_bookmark()
+        return redirect("/bookmarks")
+    except:
+        return redirect("/bookmarks")
 
 @bookmarks_route.route("/bookmarks/delete/<bookmark_id>", methods=["GET"])
 @authorize
