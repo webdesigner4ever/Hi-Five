@@ -48,13 +48,17 @@ def do_register():
     try:
         username = request.form["username"]
         password = request.form["password"]  
-
-        uc = user_controller(username, password)
-        uc.register()
-        return render_template("index.html", message="Registration Success")
+        confirm_password = request.form["confirm_password"]
+        if (confirm_password == password):
+            uc = user_controller(username, password)
+            uc.register()
+            return render_template("index.html", message="Registration Success")
+        else:
+            return render_template("register.html", message="Password does not match") 
     except:
         return render_template("index.html", message="Registration failed")
-
+        
+ 
 @login_route.route("/", methods=["GET"])
 @authorize
 def dashboard():
