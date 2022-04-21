@@ -3,7 +3,7 @@ from flask_session import Session
 from controllers.note_controller import note_controller
 from auth import authorize
 from functools import wraps
-import markdown2
+
 
 notes_route = Blueprint("notes_route", __name__)
 
@@ -36,21 +36,27 @@ def view_note(note_id):
 @notes_route.route("/notes/add", methods=["POST"])
 @authorize
 def add_note():
-    note_title = request.form["note_title"]
-    note_cont = request.form["note_cont"]
+    try:
+        note_title = request.form["note_title"]
+        note_cont = request.form["note_cont"]
    
-    nc = note_controller(session["user"].user_id, note_title, note_cont)
-    nc.create_note()
-    return redirect("/notes")
+        nc = note_controller(session["user"].user_id, note_title, note_cont)
+        nc.create_note()
+        return redirect("/notes")
+    except:
+        return redirect("/notes")
 
 @notes_route.route("/notes/update/<note_id>", methods=["POST"])
 @authorize
 def update_note(note_id):
-    note_title = request.form["note_title"]
-    note_cont = request.form["note_cont"]
-    nc = note_controller(session["user"].user_id, note_id=note_id, note_title=note_title, note_content=note_cont)
-    nc.update_note()
-    return redirect("/notes")
+    try:
+        note_title = request.form["note_title"]
+        note_cont = request.form["note_cont"]
+        nc = note_controller(session["user"].user_id, note_id=note_id, note_title=note_title, note_content=note_cont)
+        nc.update_note()
+        return redirect("/notes")
+    except:
+        return redirect("/notes")
 
 @notes_route.route("/notes/delete/<note_id>", methods=["GET"])
 @authorize
