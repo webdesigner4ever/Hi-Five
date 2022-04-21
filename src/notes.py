@@ -1,8 +1,10 @@
+
 from flask import Blueprint, render_template, redirect, request, session, jsonify, abort
 from flask_session import Session
 from controllers.note_controller import note_controller
 from auth import authorize
 from functools import wraps
+import markdown2
 
 
 notes_route = Blueprint("notes_route", __name__)
@@ -29,22 +31,19 @@ def view_note(note_id):
 
     view_note = {
         "title": note.note_title,
-        "content": markdown2.markdown(note.note_content)
+        "content": markdown2.markdown(str(note.note_content))
     }
     return render_template("view_note.html", view_note=view_note) 
 
 @notes_route.route("/notes/add", methods=["POST"])
 @authorize
 def add_note():
-    try:
         note_title = request.form["note_title"]
         note_cont = request.form["note_cont"]
-   
-        nc = note_controller(session["user"].user_id, note_title, note_cont)
+        nc = note_controller(session["user"].user_id, note_title,note_cont)
         nc.create_note()
         return redirect("/notes")
-    except:
-        return redirect("/notes")
+    
 
 @notes_route.route("/notes/update/<note_id>", methods=["POST"])
 @authorize

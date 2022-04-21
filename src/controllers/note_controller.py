@@ -1,7 +1,7 @@
 import sys
-
 sys.path.append("..")
 
+from utility import AESCipher
 from models.db import db
 from models.db import Note
 
@@ -23,11 +23,14 @@ class note_controller():
         """
             Returns a note of given note id and user id
         """
+        aes = AESCipher()
         note = Note.query.filter_by(user_id=self.user_id, note_id=self.note_id).first()
+        note.note_content = aes.decrypt(note.note_content)
         return note
         
     def create_note(self):
-        notes = Note(self.user_id, self.note_title, self.note_content)
+        aes = AESCipher()
+        notes = Note(self.user_id, self.note_title, aes.encrypt(self.note_content))
         db.session.add(notes)
         db.session.commit()
     
@@ -35,13 +38,17 @@ class note_controller():
         """
             Update note of given note id with new contents
         """
+        aes = AESCipher()
         note = Note.query.filter_by(user_id=self.user_id, note_id=self.note_id).first()
         note.note_title = self.note_title
-        note.note_content = self.note_content
+        note.note_content = aes.encrypt(self.note_content)
         db.session.flush()
         db.session.commit()
     
     def delete_note(self):
+        """
+            Delete given note id and user id
+        """
         Note.query.filter_by(user_id=self.user_id, note_id=self.note_id).delete()
         db.session.commit()
         return True
