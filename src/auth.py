@@ -67,12 +67,10 @@ def do_password():
 
     if New_password==confirm_password:
         uc = user_controller(session.get("user").username, currentpassword)
-        user = uc.changepassword(currentpassword,New_password)
-        return render_template("changepassword.html", message="Password Confirmed")
+        success = uc.changepassword(currentpassword,New_password)
+        if success == True:
+            return render_template("changepassword.html", message="Password changed successfully.")
+        else:
+            return render_template("changepassword.html", message="Incorrect current passowrd.")
     else:
         return render_template("changepassword.html", message="Password does not match")
-
-    uc = user_controller(currentpassword,Newpassword,confirmpassword)
-    uc.changepassword()
-    uc = user_controller(username, password)
-    uc.register()
