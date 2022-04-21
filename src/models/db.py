@@ -17,6 +17,7 @@ class Bookmark(db.Model):
     bookmark_title = db.Column(db.String(165), nullable=False)
     bookmark_desc = db.Column(db.String(1024), nullable=True)
     bookmark_url = db.Column(db.String(1024), nullable=False)
+    pinned = db.Column(db.Integer,default=0)
 
     def __init__(self, user_id, bookmark_title, bookmark_desc, bookmark_url):
         self.user_id = user_id
