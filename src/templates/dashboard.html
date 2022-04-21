@@ -10,5 +10,131 @@
     <h1 class="mt-4">Welcome, {{ user["username"] }}</h1>
     <hr />
     
-</div>        
+</div>
+<div class="container-fluid"> 
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Saved Bookmarks</h5>
+                    <hr/>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                    <th>Bookmark Title</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                            </tr>
+                        </thead>
+                        {% for bookmark in bookmarks %}
+                            <tr>
+                                <td>{{ bookmark["bookmark_title"] }}</td>
+                                <td>{{ bookmark["bookmark_desc"] }}</td>
+                                <td>
+                                    <a target="_blank" href="{{ bookmark['bookmark_url'] }}">Visit</a>
+                                    <a onclick="return confirm('Are you sure that you want to delete this bookmark?')" href="/bookmarks/delete/{{ bookmark['bookmark_id'] }}">Delete</a>
+                                    <a href="/bookmarks/pin/{{ bookmark['bookmark_id'] }}">Pin</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Saved Passwords</h5>
+                <hr/>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                                <th>Title</th>
+                                <th>Password</th>
+                                <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pswrd in pswrds %}
+                            <tr>
+                                <td>{{ pswrd["pswrd_title"] }}</td>
+                                </td>
+                                <td>
+                                    <input type="password" class="form-control" disabled value="{{ pswrd['pswrd_content'] }}" id="field_{{ pswrd['pswrd_id'] }}" /> 
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" href="#" onclick="document.getElementById(`field_{{ pswrd['pswrd_id'] }}`).type=`text`">Reveal</a>
+                                    <a class="btn btn-danger" href="/pswrds/delete/{{ pswrd['pswrd_id'] }}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Saved Notes</h5>
+                <hr/>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                                <th>Note Title</th>
+                                <th>Action</th>
+                        </tr>
+                    </thead>
+                    {% for note in notes %}
+                        <tr>
+                            <td>{{ note["note_title"] }}</td>
+                            <td>
+                                <a target="_blank" href="/notes/edit/{{ note['note_id'] }}">Edit</a>
+                                <a target="_blank" href="/notes/view/{{ note['note_id'] }}">View</a>
+                                <a onclick="return confirm('Are you sure that you want to delete this note?')" href="/notes/delete/{{ note['note_id'] }}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Saved Documents</h5>
+                <hr/>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                                <th>Document Title</th>
+                                <th>Action</th>
+                        </tr>
+                    </thead>
+                    {% for document in documents %}
+                        <tr>
+                            <td>{{ document["document_title"] }}</td>
+                            <td>
+                                <a class="btn btn-warning" target="_blank" href="/static/uploads/{{ document['document_cont'] }}">Download</a>
+                                <a class="btn btn-danger" href="/documents/delete/{{ document['document_id'] }}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 {% endblock %}
