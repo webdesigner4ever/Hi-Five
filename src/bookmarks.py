@@ -32,4 +32,10 @@ def delete_bookmark(bookmark_id):
     bc = bookmark_controller(user_id=session["user"].user_id,bookmark_id=bookmark_id)
     bc.delete_bookmark()
     return redirect("/bookmarks")
-    
+
+@bookmarks_route.route("/bookmarks/pin/<bookmark_id>", methods=["GET"])
+@authorize
+def pin_bookmark(bookmark_id):
+    bc = bookmark_controller(user_id=session["user"].user_id,bookmark_id=bookmark_id)
+    bc.pin_bookmark(1)
+    return redirect("/bookmarks")

@@ -26,3 +26,12 @@ class bookmark_controller():
         Bookmark.query.filter_by(user_id=self.user_id, bookmark_id=self.bookmark_id).delete()
         db.session.commit()
         return True
+    
+    def pin_bookmark(self, pin):
+        bookmark = Bookmark.query.filter_by(bookmark_id=self.bookmark_id,user_id=self.user_id).first()
+        bookmark.pinned = pin
+        db.session.flush()
+        db.session.commit()
+    
+
+        
