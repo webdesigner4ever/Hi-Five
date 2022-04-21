@@ -30,6 +30,7 @@ class Document(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.user_id))
     document_title = db.Column(db.String(165), nullable=False)
     document_cont= db.Column(db.String(1024), nullable=False)
+    pinned = db.Column(db.Integer,default=0)
     def __init__(self, user_id, document_title, document_cont):
         self.user_id = user_id
         self.document_title = document_title
