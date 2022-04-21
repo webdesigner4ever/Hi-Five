@@ -19,16 +19,19 @@ def index():
 
 @login_route.route("/login", methods=["POST"])
 def login():
-    username = request.form["username"]
-    password = request.form["password"]  
+    try:
+        username = request.form["username"]
+        password = request.form["password"]  
 
-    uc = user_controller(username, password)
-    user = uc.login()
-    if user != False:
-        session["user"] = user
-        return redirect("/")
-    else:
-        return render_template("index.html", message="Invalid Credentials")
+        uc = user_controller(username, password)
+        user = uc.login()
+        if user != False:
+            session["user"] = user
+            return redirect("/")
+        else:
+            return render_template("index.html", message="Invalid Credentials")
+    except:
+        return render_template("index.html", message="All fields are required.")
 
 @login_route.route("/logout")
 def logout():
