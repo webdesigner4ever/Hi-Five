@@ -45,13 +45,15 @@ def register():
 # TODO: Password encryption
 @login_route.route("/register.do", methods=["POST"])
 def do_register():
-    username = request.form["username"]
-    password = request.form["password"]  
+    try:
+        username = request.form["username"]
+        password = request.form["password"]  
 
-    uc = user_controller(username, password)
-    uc.register()
-    
-    return render_template("index.html", message="Registration Success")
+        uc = user_controller(username, password)
+        uc.register()
+        return render_template("index.html", message="Registration Success")
+    except:
+        return render_template("index.html", message="Registration failed")
 
 @login_route.route("/", methods=["GET"])
 @authorize
