@@ -17,4 +17,7 @@ git clone https://github.com/webdesigner4ever/Hi-Five
 cd Hi-Five/src
 
 pip3 install -r requirements.txt
+
+python3 __init__.py
 ```
+

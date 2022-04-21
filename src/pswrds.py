@@ -16,16 +16,15 @@ def view_pswrds():
 @pswrds_route.route("/pswrd/add", methods=["POST"])
 @authorize
 def add_pswrd():
-    pswrd_title = request.form["pswrd_title"]
-    pswrd_desc = request.form["pswrd_desc"]
-    pswrd_cont = request.form["pswrd_cont"]
-    if (len(pswrd_cont)==0 or (len(pswrd_desc)==0) or (len(pswrd_title)==0)):
+    pswrd_username = request.form["pswrd_username"]
+    pswrd_description = request.form["pswrd_description"]
+    pswrd_content = request.form["pswrd_content"]
+    if (len(pswrd_content)==0 or (len(pswrd_description)==0) or (len(pswrd_username)==0)):
         print("Invalid Password")
-    
-    
+        # TODO: Redirect message
+        return redirect("/pswrds")
 
-   
-    pc = pswrd_controller(session["user"].user_id, pswrd_title, pswrd_desc,pswrd_cont)
+    pc = pswrd_controller(session["user"].user_id, pswrd_username, pswrd_description, pswrd_content)
     pc.create_pswrd()
     return redirect("/pswrds")
 
