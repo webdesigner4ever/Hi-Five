@@ -20,15 +20,18 @@ def view_documents():
 @documents_route.route("/documents/add", methods=["POST"])
 @authorize
 def add_document():
-    document_title = request.form["document_title"]
-    f = request.files['document']
-    folder_id = str(uuid.uuid4())
-    filename = folder_id + "/" + f.filename
-    os.mkdir(os.path.join(current_app.config['UPLOAD_FOLDER'], folder_id))
-    f.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-    dc = document_controller(session["user"].user_id, document_title, filename)
-    dc.create_document()
-    return redirect("/documents")
+    try:
+        document_title = request.form["document_title"]
+        f = request.files['document']
+        folder_id = str(uuid.uuid4())
+        filename = folder_id + "/" + f.filename
+        os.mkdir(os.path.join(current_app.config['UPLOAD_FOLDER'], folder_id))
+        f.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+        dc = document_controller(session["user"].user_id, document_title, filename)
+        dc.create_document()
+        return redirect("/documents")
+    except:
+        return redirect("/documents")
 
 @documents_route.route("/documents/delete/<document_id>", methods=["GET"])
 @authorize
