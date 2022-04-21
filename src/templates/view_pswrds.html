@@ -4,31 +4,78 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <form method="POST" action="/pswrd/add">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Store Password</h5>
+                    <hr />
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            Description: 
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" required class="form-control" name="pswrd_description"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            Username: 
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" required class="form-control" name="pswrd_username"/>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            Password: 
+                        </div>
+                        <div class="col-md-9">
+                            <input type="password" required class="form-control" name="pswrd_content"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" name="submit" class="btn btn-success"/>
+                </div>
+            </div>
+        </form>
 
-<form method="POST" action="/pswrd_descs/add">
-    Username
-    <input type="text" name="pswrd_desc_title"/>
-    Password
-    <input type="text" name="pswrd_desc_cont"/>
-    Password description
-    <input type="text" name="pswrd_desc_desc"/>
-    
-    <input type="submit" name="submit"/>
-    
-</form>
-<table>
-    {% for bookmark in pswrd_descs %}
-        <tr>
-            <td>{{ pswrd_desc["pswrd_desc_title"] }}</td>
-            <td>{{ pswrd_desc["pswrd_desc_desc"] }}
-            </td>
-            <td>
-                <a href="{{ pswrd_desc['pswrd_desc_url'] }}">View</a>
-            </td>
-            <td>
-                <a href="/pswrd_descs/delete/{{ pswrd_desc['pswrd_desc_id'] }}">Delete</a>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Saved Passwords</h5>
+                        <hr/>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                        <th>Title</th>
+                                        <th>Password</th>
+                                        <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pswrd in pswrds %}
+                                    <tr>
+                                        <td>{{ pswrd["pswrd_title"] }}</td>
+                                        </td>
+                                        <td>
+                                            <input type="password" class="form-control" disabled value="{{ pswrd['pswrd_content'] }}" id="field_{{ pswrd['pswrd_id'] }}" /> 
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="#" onclick="document.getElementById(`field_{{ pswrd['pswrd_id'] }}`).type=`text`">Reveal</a>
+                                            <a class="btn btn-danger" href="/pswrds/delete/{{ pswrd['pswrd_id'] }}">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
