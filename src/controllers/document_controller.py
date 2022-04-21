@@ -28,4 +28,12 @@ class document_controller():
         db.session.commit()
         return document_path
 
+    def pin_document(self, pin):
+        document = document.query.filter_by(document_id=self.document_id,user_id=self.user_id).first()
+        document.pinned = pin
+        db.session.flush()
+        db.session.commit()
+    
+
+
      
