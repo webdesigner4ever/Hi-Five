@@ -66,6 +66,7 @@
                                     <td>
                                         <a target="_blank" href="{{ bookmark['bookmark_url'] }}">Visit</a>
                                         <a onclick="return confirm('Are you sure that you want to delete this bookmark?')" href="/bookmarks/delete/{{ bookmark['bookmark_id'] }}">Delete</a>
+                                        <a href="/bookmarks/pin/{{ bookmark['bookmark_id'] }}">Pin</a>
                                     </td>
                                 </tr>
                             {% endfor %}
