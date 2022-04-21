@@ -1,6 +1,7 @@
 from flask import Flask
 from models.db import db
 from flask_session import Session
+from config import *
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -39,5 +40,4 @@ def create_app():
 app = create_app()
 
 if __name__ == "__main__":
-
-    app.run(host='0.0.0.0', port=8086, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=DEBUG)
