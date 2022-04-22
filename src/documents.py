@@ -48,5 +48,10 @@ def pin_document(document_id):
     dc.pin_document(1)
     return redirect("/documents")
 
-
+@documents_route.route("/documents/pin/<document_id>", methods=["GET"])
+@authorize
+def unpin_document(document_id):
+    dc = document_controller(user_id=session["user"].user_id,document_id=document_id)
+    dc.pin_document(0)
+    return redirect("/documents")
     
