@@ -52,3 +52,8 @@ class note_controller():
         Note.query.filter_by(user_id=self.user_id, note_id=self.note_id).delete()
         db.session.commit()
         return True
+    def pin_note(self, pin):
+        note = note.query.filter_by(note_id=self.note_id,user_id=self.user_id).first()
+        note.pinned = pin
+        db.session.flush()
+        db.session.commit()
