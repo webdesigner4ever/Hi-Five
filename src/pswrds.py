@@ -23,12 +23,12 @@ def add_pswrd():
         if (len(pswrd_content)==0 or (len(pswrd_description)==0) or (len(pswrd_username)==0)):
             print("Invalid Password")
             # TODO: Redirect message
-        return redirect("/pswrds")
+            return redirect("/pswrds")
+    
+        pc = pswrd_controller(session["user"].user_id, pswrd_username, pswrd_description, pswrd_content)
+        pc.create_pswrd()
     except:
         return redirect("/pswrds")
-
-    pc = pswrd_controller(session["user"].user_id, pswrd_username, pswrd_description, pswrd_content)
-    pc.create_pswrd()
     return redirect("/pswrds")
 
 @pswrds_route.route("/pswrds/delete/<pswrd_id>", methods=["GET"])
