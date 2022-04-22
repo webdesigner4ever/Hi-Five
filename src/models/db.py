@@ -31,6 +31,7 @@ class Document(db.Model):
     document_title = db.Column(db.String(165), nullable=False)
     document_cont= db.Column(db.String(1024), nullable=False)
     pinned = db.Column(db.Integer,default=0)
+
     def __init__(self, user_id, document_title, document_cont):
         self.user_id = user_id
         self.document_title = document_title
@@ -42,6 +43,7 @@ class pswrd(db.Model):
     pswrd_user = db.Column(db.String(165), nullable=False)
     pswrd_title = db.Column(db.String(165), nullable=False)
     pswrd_content = db.Column(db.String(1024), nullable=True)
+    pinned = db.Column(db.Integer,default=0)
    
 
     def __init__(self, user_id, pswrd_user, pswrd_title, pswrd_content):
@@ -55,6 +57,7 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.user_id))
     note_title = db.Column(db.String(165), nullable=False)
     note_content = db.Column(db.String(1024), nullable=True)
+    pinned = db.Column(db.Integer,default=0)
    
     def __init__(self, user_id, note_title, note_content):
         self.user_id = user_id

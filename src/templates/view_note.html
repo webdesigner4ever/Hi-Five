@@ -96,6 +96,7 @@
                                         <a target="_blank" href="/notes/edit/{{ note['note_id'] }}">Edit</a>
                                         <a target="_blank" href="/notes/view/{{ note['note_id'] }}">View</a>
                                         <a onclick="return confirm('Are you sure that you want to delete this note?')" href="/notes/delete/{{ note['note_id'] }}">Delete</a>
+                                        <a target="_blank" href="/notes/view/{{ note['note_id'] }}">Pin</a>
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -63,4 +63,16 @@ def delete_note(note_id):
     nc = note_controller(user_id=session["user"].user_id, note_id=note_id)
     nc.delete_note()
     return redirect("/notes")
-    
+@notes_route.route("/notes/pin/<note_id>", methods=["GET"])
+@authorize
+def pin_note(note_id):
+    nc = note_controller(user_id=session["user"].user_id,note_id=note_id)
+    nc.pin_note(1)
+    return redirect("/notes")
+@notes_route.route("/notes/pin/<note_id>", methods=["GET"])
+@authorize
+def unpin_note(note_id):
+    nc = note_controller(user_id=session["user"].user_id,note_id=note_id)
+    nc.pin_note(0)
+    return redirect("/notes")
+

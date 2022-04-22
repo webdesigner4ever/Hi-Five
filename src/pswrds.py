@@ -37,3 +37,15 @@ def delete_pswrd(pswrd_id):
     pc =pswrd_controller(user_id=session["user"].user_id,pswrd_id=pswrd_id)
     pc.delete_pswrd()
     return redirect("/pswrds")
+@pswrds_route.route("/pswrds/pin/<pswrd_id>", methods=["GET"])
+@authorize
+def pin_pswrd(pswrd_id):
+    pc = pswrd_controller(user_id=session["user"].user_id,pswrd_id=pswrd_id)
+    pc.pin_pswrd(1)
+    return redirect("/pswrds")
+@pswrds_route.route("/pswrds/pin/<pswrd_id>", methods=["GET"])
+@authorize
+def pin_pswrd(pswrd_id):
+    pc = pswrd_controller(user_id=session["user"].user_id,pswrd_id=pswrd_id)
+    pc.pin_pswrd(0)
+    return redirect("/pswrds")

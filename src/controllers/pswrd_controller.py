@@ -25,3 +25,8 @@ class pswrd_controller():
         pswrd.query.filter_by(user_id=self.user_id, pswrd_id=self.pswrd_id).delete()
         db.session.commit()
         return True
+    def pin_pswrd(self, pin):
+        pswrd = pswrd.query.filter_by(pswrd_id=self.pswrd_id,user_id=self.user_id).first()
+        pswrd.pinned = pin
+        db.session.flush()
+        db.session.commit()
