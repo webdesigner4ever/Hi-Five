@@ -38,3 +38,53 @@ pip3 install -r requirements.txt
 python3 __init__.py
 ```
 
+#### Docker Environment
+
+```bash
+cd src
+
+sudo docker build -t hifive .
+
+sudo docker run hifive
+```
+
+### Updates
+
+#### Week - 1
+ 
++ Project planning.
++ Use-case diagram.
++ Class diagram.
+
+#### Week - 2
+
++ ER Diagram
++ Developed basic blueprint of application.
+
+#### Week - 3 
+
++ UI development
++ User authentication and registration.
+
+#### Week - 4
+
++ Added features:
+    + Password management section
+    + Notes
+
+#### Week - 5
+
++ Implemented features:
+    + Note encryption
+    + Password hashing
+
+#### Week - 6
+
++ Implemented features:
+    + Document section
+    + Document upload
+    + Settings page
+
+#### Week - 7
+
++ Dockerized application
