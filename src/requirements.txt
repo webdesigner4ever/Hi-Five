@@ -4,3 +4,4 @@ flask_login
 flask_session
 markdown2
 pbkdf2
+pycryptodome
